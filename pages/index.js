@@ -22,6 +22,9 @@ const defaultFlags = [
   ['D62900', 'FF9B55', 'FFFFFF', 'D461A6', 'A50062'],
   ['078d70', '27ceaa', '98e8c1', 'ffffff', '7bade2', '5049cc', '3d1a78'],
 ];
+
+const coolWords = ["cool", "awesome", "valid", "exciting", "interesting", "amazing", "pretty", "cute", "eye-catching", "prideful"];
+
 const directions = { vertical: -1, horizontal: 1 };
 export default function Home() {
   const [colors, setColors] = useState([]);
@@ -120,7 +123,7 @@ export default function Home() {
 }
 function downloadSVG(svg) {
   let xml = ReactDOMServer.renderToStaticMarkup(svg);
-  fileDownload(xml, 'flag.svg');
+  fileDownload(xml, `My ${coolWords.random()} flag.svg`);
 }
 async function downloadPNG(svg) {
   let xml = ReactDOMServer.renderToStaticMarkup(svg);
@@ -131,7 +134,7 @@ async function downloadPNG(svg) {
   let v = await Canvg.from(ctx, xml, presets.offscreen());
   await v.render();
   const blob = await canvasToBlob(canvas);
-  fileDownload(blob, 'flag.png');
+  fileDownload(blob, `My ${coolWords.random()} flag.png`);
 }
 
 function generateFlag(colors, direction, borderRadius) {
